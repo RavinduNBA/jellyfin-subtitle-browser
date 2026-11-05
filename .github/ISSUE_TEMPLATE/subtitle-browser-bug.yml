@@ -1,0 +1,29 @@
+name: Subtitle Browser alpha problem
+description: Report a problem with this unofficial fork, not upstream Jellyfin.
+title: "[Subtitle Browser] "
+body:
+  - type: markdown
+    attributes:
+      value: "This is a primarily AI-developed experimental fork. Do not include passwords, tokens, private server URLs or unredacted logs."
+  - type: input
+    id: version
+    attributes:
+      label: Release and Windows version
+      placeholder: "0.1.0-alpha.1, Windows 11"
+    validations:
+      required: true
+  - type: input
+    id: subtitles
+    attributes:
+      label: Subtitle format and source
+      placeholder: "Embedded ASS, external SRT, etc."
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps, expected result and actual result
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Optional screenshot or redacted error
