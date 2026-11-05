@@ -22,8 +22,7 @@ const features = [
 const plugins = [
     'mpvVideoPlayer',
     'mpvAudioPlayer',
-    'jmpInputPlugin',
-    'jmpUpdatePlugin'
+    'jmpInputPlugin'
 ];
 
 function loadScript(src) {
@@ -40,6 +39,9 @@ function loadScript(src) {
 for (const plugin of plugins) {
     window[plugin] = async () => {
         await loadScript(`${jmpInfo.scriptPath}${plugin}.js`);
+        if (plugin === 'mpvVideoPlayer') {
+            await loadScript(`${jmpInfo.scriptPath}subtitle-browser.js`);
+        }
         return window["_" + plugin];
     };
 }

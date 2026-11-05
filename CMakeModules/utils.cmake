@@ -22,8 +22,10 @@ function(copy_resources target)
   # in the output field, and this is still cleaner than hardcoding the path
   # of the output binary.
   #  
-  get_property(TARGET_LOC TARGET ${target} PROPERTY LOCATION)
-  get_filename_component(TARGET_DIR ${TARGET_LOC} DIRECTORY)
+  get_target_property(TARGET_DIR ${target} RUNTIME_OUTPUT_DIRECTORY)
+  if(NOT TARGET_DIR)
+    set(TARGET_DIR ${CMAKE_CURRENT_BINARY_DIR})
+  endif()
   if(APPLE)
     set(TARGET_LOC ${TARGET_DIR}/..)
   else()

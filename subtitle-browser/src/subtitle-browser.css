@@ -1,0 +1,64 @@
+/* Native window content. Explicit edges and margins support Qt 5 Chromium. */
+.jmp-sb {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+    background: #202020;
+    color: #eee;
+    font: 15px "Segoe UI", sans-serif;
+}
+.jmp-sb * { box-sizing: border-box; }
+.jmp-sb button, .jmp-sb input, .jmp-sb select {
+    color: inherit;
+    background: #303030;
+    border: 1px solid #666;
+    border-radius: 3px;
+    padding: 7px;
+    font: 14px "Segoe UI", sans-serif;
+}
+.jmp-sb button { cursor: pointer; }
+.jmp-sb .tools {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 8px 14px;
+}
+.jmp-sb .tools > * { margin: 4px; }
+.jmp-sb .tools > input[type=search], .jmp-sb .tools > select { width: calc(100% - 8px); }
+.jmp-sb label { display: flex; align-items: center; white-space: nowrap; }
+.jmp-sb label input { margin-left: 6px; }
+.jmp-sb .delay { width: 72px; }
+.jmp-sb .lines { overflow: auto; flex: 1; min-height: 0; padding: 8px 18px; }
+.jmp-sb .cue {
+    padding: 12px;
+    margin: 5px 0;
+    border-radius: 6px;
+    border-left: 3px solid transparent;
+    white-space: pre-wrap;
+    cursor: pointer;
+}
+.jmp-sb .cue:hover { background: #303030; }
+.jmp-sb .cue.active { background: #00a4dc; color: white; border-color: #00a4dc; }
+.jmp-sb time { display: block; color: #aaa; font: 12px Consolas, monospace; margin-bottom: 6px; }
+.jmp-sb .status { flex-shrink: 0; padding: 12px 18px; color: #aaa; border-top: 1px solid #666; font-size: 12px; }
+.jmp-sb-pop { margin: 0; overflow: hidden; }
+.videoOsdBottom .jmp-sb-launch {
+    position: static;
+    border: 0;
+    background: transparent;
+    padding: .556em;
+    border-radius: 50%;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+.videoOsdBottom .jmp-sb-launch[aria-pressed=true] { color: #00a4dc; }
+.videoOsdBottom .jmp-sb-launch[hidden] { display: none !important; }
+.jmp-sb-icon { display: block; width: 1.6em; height: 1.6em; overflow: visible; pointer-events: none; }

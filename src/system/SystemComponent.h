@@ -3,6 +3,7 @@
 
 #include "ComponentManager.h"
 #include <QTimer>
+#include <QImage>
 #include <QNetworkReply>
 #include "utils/Utils.h"
 #include "Paths.h"
@@ -46,6 +47,7 @@ public:
   Q_INVOKABLE void runUserScript(QString script);
 
   Q_INVOKABLE QString getNativeShellScript();
+  Q_INVOKABLE bool subtitleFrameHasContent(const QImage& image) const;
 
   Q_INVOKABLE void checkForUpdates();
 

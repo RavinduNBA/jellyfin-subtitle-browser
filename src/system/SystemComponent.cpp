@@ -13,6 +13,7 @@
 
 #include "input/InputComponent.h"
 #include "SystemComponent.h"
+#include "utils/SubtitleFrame.h"
 #include "Version.h"
 #include "settings/SettingsComponent.h"
 #include "ui/KonvergoWindow.h"
@@ -319,6 +320,11 @@ void SystemComponent::hello(const QString& version)
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////
+bool SystemComponent::subtitleFrameHasContent(const QImage& image) const
+{
+  return subtitleFrameHasContentImage(image);
+}
+
 QString SystemComponent::getNativeShellScript()
 {
   auto path = SettingsComponent::Get().getExtensionPath();
@@ -328,6 +334,7 @@ QString SystemComponent::getNativeShellScript()
   file.open(QIODevice::ReadOnly);
   auto nativeshellString = QTextStream(&file).readAll();
   QJsonObject clientData;
+  clientData.insert("subtitleBrowserWindow", true);
   clientData.insert("deviceName", QJsonValue::fromVariant(SettingsComponent::Get().getClientName()));
   clientData.insert("scriptPath", QJsonValue::fromVariant("file:///" + path));
   QString defaultMode = SettingsComponent::Get().value(SETTINGS_SECTION_MAIN, "layout").toString();

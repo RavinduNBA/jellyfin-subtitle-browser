@@ -668,6 +668,20 @@
     ]
   },
   {
+    "section": "subtitle_browser",
+    "hidden": true,
+    "values": [
+      { "value": "has_position", "default": false },
+      { "value": "window_x", "default": 0 },
+      { "value": "window_y", "default": 0 },
+      { "value": "window_width", "default": 760 },
+      { "value": "window_height", "default": 850 },
+      { "value": "maximized", "default": false },
+      { "value": "font_size", "default": 16 },
+      { "value": "extra_delay", "default": 0.0 }
+    ]
+  },
+  {
     "section": "other",
     "order": 6,
     "values": [

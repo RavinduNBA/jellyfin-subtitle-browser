@@ -2,14 +2,27 @@ import QtQuick 2.4
 import Konvergo 1.0
 import QtWebEngine 1.7
 import QtWebChannel 1.0
-import QtQuick.Window 2.2
+import QtQuick.Window 2.15
 import QtQuick.Controls 1.4
 
 KonvergoWindow
 {
   id: mainWindow
-  title: "Jellyfin Media Player"
+  title: "Jellyfin Subtitle Browser (Unofficial)"
   objectName: "mainWindow"
+  property var subtitleBrowserPopup: null
+
+  Component
+  {
+    id: subtitleBrowserWindowComponent
+    SubtitleBrowserWindow
+    {
+      ownerWindow: mainWindow
+      playerWebView: web
+      settingsBridge: components.settings
+      systemBridge: components.system
+    }
+  }
   minimumHeight: windowMinSize.height
   minimumWidth: windowMinSize.width
 
@@ -198,6 +211,16 @@ KonvergoWindow
 
     onNewViewRequested:
     {
+      if (request.userInitiated && request.requestedUrl.toString() === "about:blank#jellyfin-subtitle-browser")
+      {
+        if (!mainWindow.subtitleBrowserPopup)
+          mainWindow.subtitleBrowserPopup = subtitleBrowserWindowComponent.createObject(mainWindow)
+        request.openIn(mainWindow.subtitleBrowserPopup.targetView)
+        // The popup restores its own geometry and maximized state on creation.
+        mainWindow.subtitleBrowserPopup.raise()
+        mainWindow.subtitleBrowserPopup.requestActivate()
+        return
+      }
       if (request.userInitiated)
       {
         console.log("Opening external URL: " + web.currentHoveredUrl)

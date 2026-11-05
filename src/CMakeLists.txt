@@ -128,6 +128,16 @@ endif()
 
 get_property(BUNDLED_FILES GLOBAL PROPERTY CONFIG_BUNDLED_FILES)
 add_executable(${MAIN_TARGET} WIN32 MACOSX_BUNDLE ${SOURCES} ${BUNDLED_FILES} ${RESOURCE_FILES} ${XCODE_RESOURCES})
+set(SUBTITLE_BROWSER_BUNDLE ${CMAKE_BINARY_DIR}/subtitle-browser.js)
+file(GLOB SUBTITLE_BROWSER_SOURCES ${CMAKE_SOURCE_DIR}/subtitle-browser/src/*)
+add_custom_command(OUTPUT ${SUBTITLE_BROWSER_BUNDLE}
+  COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/scripts/build-subtitle-browser.py
+    --source ${CMAKE_SOURCE_DIR}/subtitle-browser --output ${SUBTITLE_BROWSER_BUNDLE}
+  DEPENDS ${CMAKE_SOURCE_DIR}/scripts/build-subtitle-browser.py ${SUBTITLE_BROWSER_SOURCES}
+  COMMENT "Bundling Subtitle Browser")
+add_custom_target(SubtitleBrowserBundle DEPENDS ${SUBTITLE_BROWSER_BUNDLE})
+add_dependencies(${MAIN_TARGET} SubtitleBrowserBundle)
+install(FILES ${SUBTITLE_BROWSER_BUNDLE} DESTINATION ${INSTALL_RESOURCE_DIR}/web-client/extension)
 std_target_properties(${MAIN_TARGET})
 set_target_properties(${MAIN_TARGET} PROPERTIES
   MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/bundle/osx/Info.plist.in

@@ -6,7 +6,7 @@ set(MAIN_NAME jellyfinmediaplayer)
 if(APPLE)
   set(MAIN_NAME "Jellyfin Media Player")
 elseif(WIN32)
-  set(MAIN_NAME "JellyfinMediaPlayer")
+  set(MAIN_NAME "JellyfinSubtitleBrowser")
 endif(APPLE)
 
 configure_file(src/shared/Names.cpp.in src/shared/Names.cpp @ONLY)

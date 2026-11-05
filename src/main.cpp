@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
     }
 
     QApplication app(newArgc, newArgv);
-    app.setApplicationName("Jellyfin Media Player");
+    app.setApplicationName("Jellyfin Subtitle Browser");
 
 #if defined(Q_OS_WIN)
     // Setting window icon on OSX will break user ability to change it
@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
     PFMoveToApplicationsFolderIfNecessary();
 #endif
 
-    UniqueApplication* uniqueApp = new UniqueApplication();
+    UniqueApplication* uniqueApp = new UniqueApplication(nullptr, QStringLiteral("jellyfinSubtitleBrowser"));
     if (!uniqueApp->ensureUnique())
       return EXIT_SUCCESS;
 
