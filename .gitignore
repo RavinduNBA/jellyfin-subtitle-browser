@@ -29,3 +29,7 @@ debian/debhelper-build-stamp
 dist.zip
 obj-x86_64-linux-gnu/
 deployment/dist
+
+# Keep the fork's build entry points despite upstream build-directory patterns.
+!/subtitle-browser/Build-Extension.ps1
+!/release/Build-Release.ps1
